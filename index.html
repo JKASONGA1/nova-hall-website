@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA HALL - Premier Event Venue in Fort Worth, TX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #d4af37;
+            --accent: #1a1a1a;
+            --text: #333;
+            --gold-light: #f4e4c1;
+            --gold-dark: #b8960c;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23000000;stop-opacity:1" /><stop offset="100%" style="stop-color:%231a1a1a;stop-opacity:1" /></linearGradient></defs><rect fill="url(%23grad1)" width="1200" height="800"/><circle cx="200" cy="200" r="300" fill="%23d4af37" opacity="0.05"/><circle cx="1000" cy="600" r="400" fill="%23d4af37" opacity="0.05"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #d4af37 0%, #b8960c 100%);
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0,0,0,0.1) 10px,
+                rgba(0,0,0,0.1) 20px
+            );
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--secondary);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            color: white;
+        }
+
+        .features .section-title {
+            color: var(--secondary);
+        }
+
+        .features .section-title::after {
+            background: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .feature-item p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-info h3 {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item .icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Simple elegant building outline -->
+                    <!-- Roof -->
+                    <path d="M 20 40 L 50 25 L 80 40" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Main building -->
+                    <rect x="25" y="40" width="50" height="45" fill="none" stroke="#d4af37" stroke-width="2.5"/>
+                    
+                    <!-- Elegant "N" in center -->
+                    <text x="50" y="68" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#d4af37" text-anchor="middle" dominant-baseline="middle">N</text>
+                    
+                    <!-- Simple base -->
+                    <rect x="20" y="85" width="60" height="3" fill="#d4af37"/>
+                </svg>
+                <span class="logo-text">NOVA HALL</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>NOVA HALL</h1>
+            <p class="tagline">Your Vision, Our Venue</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Premier Event Venue in Fort Worth, TX</p>
+            <a href="#contact" class="cta-button">BOOK YOUR EVENT</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Welcome to NOVA HALL</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Elegance Meets Excellence</h3>
+                <p>NOVA HALL is Fort Worth's premier luxury event venue, dedicated to creating unforgettable experiences through exceptional hospitality and personalized service.</p>
+                <p>We specialize in transforming your vision into reality, offering state-of-the-art facilities with cultural customization and turnkey event planning that exceeds expectations.</p>
+                <p>From intimate gatherings to grand celebrations, our high-capacity venue provides the perfect backdrop for life's most important moments.</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💍</div>
+                <h3>Weddings</h3>
+                <p>Create your dream wedding with our elegant spaces and comprehensive planning services.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Corporate Events</h3>
+                <p>Host impressive conferences, meetings, and corporate gatherings in a professional setting.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Galas & Celebrations</h3>
+                <p>Elevate your special occasions with our luxurious venue and customized event services.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Graduations</h3>
+                <p>Celebrate academic achievements in style with our spacious and elegant facilities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3>Cultural Events</h3>
+                <p>Honor traditions with our culturally-sensitive planning and customizable spaces.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎉</div>
+                <h3>Private Parties</h3>
+                <p>Make every celebration memorable with our versatile venue and attentive service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Why Choose NOVA HALL</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="icon">🏛️</div>
+                <h4>High-Capacity Venue</h4>
+                <p>Spacious facilities to accommodate events of all sizes</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🎨</div>
+                <h4>Cultural Customization</h4>
+                <p>Personalized decor and arrangements for any tradition</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📋</div>
+                <h4>Turnkey Planning</h4>
+                <p>Full-service event coordination from start to finish</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">💎</div>
+                <h4>Luxury Amenities</h4>
+                <p>Premium furnishings and state-of-the-art equipment</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🤝</div>
+                <h4>Trusted Partners</h4>
+                <p>Established network of quality vendors and services</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📍</div>
+                <h4>Prime Location</h4>
+                <p>Conveniently located in Fort Worth, TX</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Book Your Event</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <div>
+                        <strong>Location</strong><br>
+                        Fort Worth, TX
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        info@novahall.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📞</span>
+                    <div>
+                        <strong>Phone</strong><br>
+                        (617) 849-1247
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">⏰</span>
+                    <div>
+                        <strong>Hours</strong><br>
+                        By Appointment
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="event-type">Event Type</label>
+                    <select id="event-type">
+                        <option value="">Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="gala">Gala</option>
+                        <option value="graduation">Graduation</option>
+                        <option value="cultural">Cultural Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message"></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%; cursor: pointer; border: none;">SUBMIT INQUIRY</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 NOVA HALL, LLC. All Rights Reserved.</p>
+        <p>Fort Worth, TX | Your Vision, Our Venue</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly to discuss your event.');
+            e.target.reset();
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
