@@ -400,26 +400,135 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 3%;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .logo {
+                gap: 0.5rem;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+
             .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
+                gap: 0.8rem;
+                font-size: 0.75rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                height: 80vh;
+                padding: 0 1rem;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
+                letter-spacing: 2px;
             }
 
             .hero .tagline {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem !important;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
             }
 
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            section {
-                padding: 3rem 5%;
+            .about-image {
+                height: 250px;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .service-icon {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                padding: 2rem;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                font-size: 0.7rem;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -577,7 +686,7 @@
                     <span class="icon">📞</span>
                     <div>
                         <strong>Phone</strong><br>
-                        (617) 849-1247
+                        (817) XXX-XXXX
                     </div>
                 </div>
                 <div class="contact-item">
